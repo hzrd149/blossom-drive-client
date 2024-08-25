@@ -23,3 +23,13 @@ export function getExtension(type?: string) {
   const ext = mime.getExtension(type);
   return ext ? "." + ext : undefined;
 }
+
+export function correctFileMimeType(file: File) {
+  // handle an edge case where some browsers set the mime type of .m3u8 files to audio/x-mpegurl
+  if (file.type === "audio/x-mpegurl" && file.name.endsWith(".m3u8"))
+    return new File([file], file.name, {
+      type: "application/vnd.apple.mpegurl",
+    });
+
+  return file;
+}

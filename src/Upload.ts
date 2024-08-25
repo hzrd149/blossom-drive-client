@@ -8,7 +8,11 @@ import mime from "mime";
 import { EventEmitter } from "eventemitter3";
 
 import type { Drive } from "./Drive.js";
-import { readFileSystemDirectory, readFileSystemFile } from "./helpers.js";
+import {
+  correctFileMimeType,
+  readFileSystemDirectory,
+  readFileSystemFile,
+} from "./helpers.js";
 import { joinPath } from "./FileTree/methods.js";
 import { EncryptedDrive } from "./EncryptedDrive.js";
 
@@ -92,6 +96,9 @@ export class Upload extends EventEmitter<EventMap> {
   async addFile(file: File, path?: string) {
     path =
       path || (file.webkitRelativePath ? file.webkitRelativePath : file.name);
+
+    file = correctFileMimeType(file);
+
     this.files.push({ id: nanoid(), file, path });
   }
 
@@ -106,7 +113,8 @@ export class Upload extends EventEmitter<EventMap> {
   async addFileSystemEntry(entry: FileSystemEntry) {
     if (entry instanceof FileSystemFileEntry && entry.isFile) {
       try {
-        const file = await readFileSystemFile(entry);
+        let file = await readFileSystemFile(entry);
+        file = correctFileMimeType(file);
         this.files.push({ id: nanoid(), file, path: entry.fullPath });
       } catch (e) {
         console.log("Failed to add" + entry.fullPath);
