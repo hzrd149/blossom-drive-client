@@ -28,7 +28,7 @@
     "@changesets/cli": "^2.27.1",
     "@types/events": "^3.0.3",
     "prettier": "^3.2.5",
-    "typedoc": "^0.25.12",
-    "typescript": "^5.3.3"
+    "typedoc": "^0.26.7",
+    "typescript": "^5.6.2"
   }
 }
