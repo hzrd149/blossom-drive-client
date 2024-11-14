@@ -1,5 +1,11 @@
 # blossom-drive-sdk
 
+## 0.5.0
+
+### Minor Changes
+
+- 6899375: Update blossom-client-sdk
+
 ## 0.4.1
 
 ### Patch Changes
