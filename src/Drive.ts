@@ -253,7 +253,8 @@ export class Drive extends EventEmitter<EventMap> {
 
     for (const server of servers) {
       try {
-        const blob = await BlossomClient.getBlob(server, file.sha256);
+        const res = await BlossomClient.downloadBlob(server, file.sha256);
+        const blob = await res.blob();
         return new File([blob], file.name, { type: file.type });
       } catch (e) {}
     }

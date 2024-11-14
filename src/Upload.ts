@@ -154,9 +154,9 @@ export class Upload extends EventEmitter<EventMap> {
         });
       }
 
-      const token = await BlossomClient.getUploadAuth(
-        _file,
+      const token = await BlossomClient.createUploadAuth(
         this.signer,
+        _file,
         `Upload ${_file.name}`,
       );
 
@@ -165,7 +165,9 @@ export class Upload extends EventEmitter<EventMap> {
         if (!this.errors[server]) this.errors[server] = {};
 
         try {
-          const blob = await BlossomClient.uploadBlob(server, _file, token);
+          const blob = await BlossomClient.uploadBlob(server, _file, {
+            auth: token,
+          });
           this.blobs[server][upload.id] = blob;
           status.results[server] = { success: true, blob };
           this.drive.setFile(joinPath(this.basePath, upload.path), {

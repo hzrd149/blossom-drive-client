@@ -18,7 +18,7 @@
   "dependencies": {
     "@noble/hashes": "^1.4.0",
     "@scure/base": "^1.1.6",
-    "blossom-client-sdk": "^0.7.0",
+    "blossom-client-sdk": "^2.0.0",
     "eventemitter3": "^5.0.1",
     "mime": "^4.0.1",
     "nanoid": "^5.0.6",

@@ -143,7 +143,8 @@ export class EncryptedDrive extends Drive {
 
     for (const server of servers) {
       try {
-        const data = await BlossomClient.getBlob(server, file.sha256);
+        const res = await BlossomClient.downloadBlob(server, file.sha256);
+        const data = await res.blob();
         const blob = await this.decryptBlob(data);
         return new File([blob], file.name, { type: file.type });
       } catch (e) {}
