@@ -1,6 +1,6 @@
 {
   "name": "blossom-drive-sdk",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "A library for working with blossom drives",
   "type": "module",
   "main": "./lib/index.js",
