@@ -1,5 +1,11 @@
 # blossom-drive-sdk
 
+## 0.5.1
+
+### Patch Changes
+
+- 23000bf: Use Reflect.has instead of Object.hasOwn
+
 ## 0.5.0
 
 ### Minor Changes
