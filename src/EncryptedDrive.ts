@@ -99,8 +99,8 @@ export class EncryptedDrive extends Drive {
       if (Number.isFinite(logn) && logn > 0 && logn <= 22) this.logn = logn;
       else this.logn = DEFAULT_SCRYPT_LOGN;
 
-      // @ts-expect-error
-      if (Object.hasOwn(event, "pubkey")) this._metadata.pubkey = event.pubkey;
+      if (Reflect.has(event, "pubkey"))
+        this._metadata.pubkey = Reflect.get(event, "pubkey");
 
       return true;
     }

@@ -171,8 +171,7 @@ export class Drive extends EventEmitter<EventMap> {
     if (!identifier) throw new Error("Missing d tag");
 
     let pubkey: string | undefined = undefined;
-    // @ts-expect-error
-    if (Object.hasOwn(event, "pubkey")) pubkey = event.pubkey;
+    if (Reflect.has(event, "pubkey")) pubkey = Reflect.get(event, "pubkey");
 
     const treeTags = event.tags.filter(
       (t) => t[0] === "x" || t[0] === "folder",
